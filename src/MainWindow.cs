@@ -59,9 +59,35 @@ namespace PriconneSizer
 			{
 				string subkey = @"Software\Cygames\PrincessConnectReDive";
 				RegistryKey key = Registry.CurrentUser.OpenSubKey(subkey, true);
-				key.SetValue("Screenmanager Resolution Width_h182942802", conneWidth);
-				key.SetValue("Screenmanager Resolution Height_h2627697771", conneHeight);
-				MessageBox.Show("설정이 완료됐습니다.", "프리코네 해상도 변경");
+				string[] valNames = key.GetValueNames();
+				string widthNamePartition = "Screenmanager Resolution Width";
+				string heightNamePartition = "Screenmanager Resolution Height";
+				string widthValName = "";
+				string heightValName = "";
+				int okCntMustEqaulsTwo = 0;
+				foreach (var valName in valNames)
+				{
+					if (valName.Contains(widthNamePartition))
+					{
+						widthValName = valName;
+						okCntMustEqaulsTwo += 1;
+					}
+					if (valName.Contains(heightNamePartition))
+					{
+						heightValName = valName;
+						okCntMustEqaulsTwo += 1;
+					}
+				}
+				if (okCntMustEqaulsTwo == 2)
+				{
+					key.SetValue(widthValName, conneWidth);
+					key.SetValue(heightValName, conneHeight);
+					MessageBox.Show("설정이 완료됐습니다.", "프리코네 해상도 변경");
+				}
+				else
+				{
+					MessageBox.Show("설정에 실패하였습니다.\n프리코네가 설치되어 있는지, 레지스트리가 올바른지 확인해주세요.", "프리코네 해상도 변경");
+				}
 			}
 
 		}
