@@ -1,6 +1,6 @@
 # Priconne Sizer
 
-![창 이미지](./docs/windows.png)
+![[창 이미지](./docs/windows.png)](https://github.com/GoatHead/priconne-sizer/releases)
 
 > [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-web-installer) 이상을 설치해주세요.
 
